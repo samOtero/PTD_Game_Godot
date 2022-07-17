@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://units/lifebar_theme.tres" type="Theme" id=1]
+[ext_resource path="res://units/LifeBarUnit.gd" type="Script" id=2]
+
+[sub_resource type="ViewportTexture" id=1]
+viewport_path = NodePath("Viewport")
+
+[node name="LifeBarUnit" type="Spatial"]
+script = ExtResource( 2 )
+weakColor = Color( 0.858824, 0.0313726, 0.0705882, 1 )
+
+[node name="Viewport" type="Viewport" parent="."]
+size = Vector2( 100, 14 )
+transparent_bg = true
+
+[node name="ProgressBar" type="ProgressBar" parent="Viewport"]
+margin_right = 153.0
+margin_bottom = 14.0
+rect_scale = Vector2( 0.64, 1 )
+theme = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+value = 50.0
+percent_visible = false
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+billboard = 1
+texture = SubResource( 1 )

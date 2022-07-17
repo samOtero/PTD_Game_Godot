@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://units/lifebar_theme.tres" type="Theme" id=1]
+
+[node name="Viewport" type="Viewport"]
+size = Vector2( 100, 14 )
+transparent_bg = true
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+margin_right = 153.0
+margin_bottom = 14.0
+rect_scale = Vector2( 0.64, 1 )
+theme = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+value = 50.0
+percent_visible = false
