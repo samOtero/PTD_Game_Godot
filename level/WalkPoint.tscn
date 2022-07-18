@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://level/WalkPoint.gd" type="Script" id=1]
+
+[sub_resource type="SpatialMaterial" id=3]
+albedo_color = Color( 1, 0, 0, 1 )
+
+[sub_resource type="CubeMesh" id=4]
+material = SubResource( 3 )
+
+[node name="WalkPoint" type="MeshInstance"]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
+mesh = SubResource( 4 )
+skeleton = NodePath("")
+material/0 = null
+script = ExtResource( 1 )
