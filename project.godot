@@ -24,6 +24,10 @@ config/name="CreatureTD"
 run/main_scene="res://gameRoot.tscn"
 config/icon="res://icon.png"
 
+[display]
+
+window/dpi/allow_hidpi=true
+
 [gdnative]
 
 singletons=[ "res://addons/godot-git-plugin/git_api.gdnlib" ]
