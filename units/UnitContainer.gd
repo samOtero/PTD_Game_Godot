@@ -5,6 +5,9 @@ var lifeBar
 var totalLife
 var currentLife
 var lifePercent
+var currentSpeed = 14.0 # TODO: Get this from profile and calculation
+
+enum DIRECTION { NORTH, SOUTH, EAST, WEST }
 
 
 # Called when the node enters the scene tree for the first time.
@@ -38,3 +41,22 @@ func setLife(newLife):
 func doLifeChange():
 	lifePercent = (float(currentLife) / totalLife) * 100.0
 	lifeBar._on_life_percent_change(lifePercent)
+	
+func faceDirection(newDirection):
+	var rotation = getRotationFromDirection(newDirection)
+	# rotate our unit to face the new direction
+	rotation_degrees = Vector3(0, rotation, 0)
+	pass
+	
+func getRotationFromDirection(whichDirection):
+	var newRotation = 0.0
+	match whichDirection:
+		DIRECTION.NORTH:
+			newRotation = 180.0
+		DIRECTION.SOUTH:
+			newRotation = 0.0
+		DIRECTION.EAST:
+			newRotation = 90.0
+		DIRECTION.WEST:
+			newRotation = -90.0
+	return newRotation
