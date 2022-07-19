@@ -18,6 +18,8 @@ var carriedCandy
 var directionVector
 var velocityVector
 var candyList
+var eventsRegistered = false
+var unitLeftEvent
 
 enum DIRECTION { NORTH, SOUTH, EAST, WEST }
 
@@ -25,6 +27,9 @@ enum DIRECTION { NORTH, SOUTH, EAST, WEST }
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	unit = owner
+	
+	# Getting a reference of our unit left event
+	unitLeftEvent = owner.owner.get_node("Events/EventUnitLeft")
 	
 	#TODO: remove this, just using it for testing
 	var startPoint = owner.owner.get_node("Path1/WalkPoint")
@@ -35,13 +40,16 @@ func reset(startPoint):
 	#set our location to the starting point
 	unit.transform.origin = initialPoint.transform.origin
 	#TODO: set these three from profile
-	dontLeave = true
+	dontLeave = false
 	canCaptureCandy = true
 	freeRoam = false
 	turnedAround = false #reset turned around as well
 	directionVector = -Vector3.FORWARD
 	velocityVector = directionVector * unit.currentSpeed
 	setNewPoint(initialPoint)
+	if (eventsRegistered == false):
+		# TODO: Add run effect things here
+		eventsRegistered = true
 	
 func setNewPoint(newPoint):
 	currentPoint = newPoint
@@ -60,8 +68,8 @@ func setNewPoint(newPoint):
 				carriedCandy.onCaptured()
 				hasCandy = false
 				carriedCandy = null
-		# TODO: add event stuff
-		# if (UnitLeftEvent) UnitLeftEvent.Raise(myUnit);
+			if (unitLeftEvent != null): unitLeftEvent.do_unit_left(unit)
+			else: print('WalkPointFollower: MISSING unitLeftEvent!')
 	getNewRotation(currentPoint, turnedAround)
 	
 # Gets the next way point we are heading to based on the given one
@@ -70,9 +78,9 @@ func GetTargetPoint(whichPoint):
 		return whichPoint.prevPoint
 	return whichPoint.nextPoint
 	
-func getNewRotation(whichPoint, turnedAround):
+func getNewRotation(whichPoint, isTurnedAround):
 	# Get unit's direction from point
-	var newDirection = whichPoint.forwardDirection if !turnedAround else whichPoint.backwardDirection
+	var newDirection = whichPoint.forwardDirection if !isTurnedAround else whichPoint.backwardDirection
 	currentDirection = newDirection
 	unit.faceDirection(currentDirection)
 	
