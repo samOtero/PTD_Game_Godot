@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://units/UnitContainer.tscn" type="PackedScene" id=1]
 [ext_resource path="res://level/waves/WaveManager.gd" type="Script" id=2]
 [ext_resource path="res://level/WalkPoint.tscn" type="PackedScene" id=3]
 [ext_resource path="res://units/UnitEnemyContainer.tscn" type="PackedScene" id=4]
 [ext_resource path="res://level/events/EventUnitLeft.gd" type="Script" id=5]
+[ext_resource path="res://level/CandyContainer.tscn" type="PackedScene" id=6]
 
 [sub_resource type="SpatialMaterial" id=1]
 albedo_color = Color( 0.337255, 0.678431, 0.396078, 1 )
@@ -68,3 +69,23 @@ unitName = "0019_ratty"
 [node name="WaveManager" type="Node" parent="."]
 script = ExtResource( 2 )
 path1Path = NodePath("../Path1/WalkPoint")
+
+[node name="Candy" type="Node" parent="."]
+
+[node name="CandyContainer" parent="Candy" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17.9069, 0.358546, 14.2536 )
+
+[node name="CandyContainer2" parent="Candy" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16.8939, 0.358546, 14.7481 )
+
+[node name="CandyContainer3" parent="Candy" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16.8939, 0.358546, 13.7786 )
+
+[node name="CandyContainer4" parent="Candy" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18.7587, 0.358546, 13.7786 )
+
+[node name="CandyContainer5" parent="Candy" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18.7587, 0.358546, 14.754 )
+
+[node name="CandyContainer6" parent="Candy" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19.5772, 0.358546, 14.4431 )
