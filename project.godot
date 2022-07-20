@@ -9,12 +9,48 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "Attack",
+"language": "GDScript",
+"path": "res://attacks/Attack.gd"
+}, {
+"base": "Attack",
+"class": "Attack_Damage",
+"language": "GDScript",
+"path": "res://attacks/Attack_Damage.gd"
+}, {
+"base": "Node",
+"class": "Effect",
+"language": "GDScript",
+"path": "res://effects/Effect.gd"
+}, {
+"base": "Effect",
+"class": "EffectForUnit",
+"language": "GDScript",
+"path": "res://effects/EffectForUnit.gd"
+}, {
+"base": "Effect",
+"class": "EffectTimer",
+"language": "GDScript",
+"path": "res://effects/EffectTimer.gd"
+}, {
+"base": "EffectForUnit",
+"class": "Effect_Damage",
+"language": "GDScript",
+"path": "res://effects/Effect_Damage.gd"
+}, {
 "base": "",
 "class": "GitAPI",
 "language": "NativeScript",
 "path": "res://addons/godot-git-plugin/git_api.gdns"
 } ]
 _global_script_class_icons={
+"Attack": "",
+"Attack_Damage": "",
+"Effect": "",
+"EffectForUnit": "",
+"EffectTimer": "",
+"Effect_Damage": "",
 "GitAPI": ""
 }
 

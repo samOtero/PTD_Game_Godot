@@ -5,7 +5,10 @@ var lifeBar
 var totalLife
 var currentLife
 var lifePercent
-var currentSpeed = 14.0 # TODO: Get this from profile and calculation
+var currentSpeed = 7.0 # TODO: Get this from profile and calculation
+var isBattling
+var isAlive
+var id
 
 enum DIRECTION { NORTH, SOUTH, EAST, WEST }
 
@@ -24,14 +27,19 @@ func _ready():
 	lifeBar.init(false, 100)
 	totalLife = 100
 	setLife(totalLife)
+	isAlive = true
+	id = 1
 
 
 func doInit(_unitProfile):
 	#TODO: set values based on given profile
-	pass
+	isBattling = false
+	isAlive = true
+	id = 1 # should maybe come from global, but might be okay since we just want this unit object to be unique between pooling itself
 	
 func reset():
 	setLife(totalLife)
+	id += 1 # increase id since we are not the same unit
 	#TODO: Add other things here
 
 func setLife(newLife):
@@ -41,6 +49,25 @@ func setLife(newLife):
 func doLifeChange():
 	lifePercent = (float(currentLife) / totalLife) * 100.0
 	lifeBar._on_life_percent_change(lifePercent)
+	
+func takeDamage(howMuch: int, _fromWho: Spatial):
+	if (isAlive == false): return 0
+	#TODO: Add me to hit list here
+	var newLife = currentLife - howMuch;
+	if (newLife <= 0):
+		onDefeat()
+		return howMuch
+	setLife(newLife)
+	return howMuch
+
+func onDefeat():
+	setLife(0)
+	isAlive = false
+	#TODO: If a path follower, then drop candy
+	#TODO: Give experience
+	#TODO: Hide Unit?
+	#TODO: Send unit defeated event
+	queue_free()
 	
 func faceDirection(newDirection):
 	var rotation = getRotationFromDirection(newDirection)
@@ -60,3 +87,6 @@ func getRotationFromDirection(whichDirection):
 		DIRECTION.WEST:
 			newRotation = -90.0
 	return newRotation
+	
+func getID():
+	return id
