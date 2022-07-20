@@ -10,6 +10,8 @@ var isBattling
 var isAlive
 var id
 
+var walkPointFollower
+
 enum DIRECTION { NORTH, SOUTH, EAST, WEST }
 
 
@@ -27,13 +29,13 @@ func _ready():
 	lifeBar.init(false, 100)
 	totalLife = 100
 	setLife(totalLife)
-	isAlive = true
-	id = 1
+	doInit(null)
 
 
 func doInit(_unitProfile):
 	#TODO: set values based on given profile
-	isBattling = false
+	walkPointFollower = get_node("WalkPointFollower")
+	isBattling = true # TODO: set this later, once we can drag towers
 	isAlive = true
 	id = 1 # should maybe come from global, but might be okay since we just want this unit object to be unique between pooling itself
 	
@@ -63,7 +65,8 @@ func takeDamage(howMuch: int, _fromWho: Spatial):
 func onDefeat():
 	setLife(0)
 	isAlive = false
-	#TODO: If a path follower, then drop candy
+	# Try to Drop Candy
+	if (walkPointFollower != null): walkPointFollower.dropCandy()
 	#TODO: Give experience
 	#TODO: Hide Unit?
 	#TODO: Send unit defeated event
