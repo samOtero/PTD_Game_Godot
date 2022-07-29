@@ -12,8 +12,10 @@ var id
 
 var walkPointFollower
 
-enum DIRECTION { NORTH, SOUTH, EAST, WEST }
+# Stores the spot a tower is on, if any
+var currentSpot
 
+enum DIRECTION { NORTH, SOUTH, EAST, WEST }
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -34,11 +36,21 @@ func _ready():
 
 func doInit(_unitProfile):
 	#TODO: set values based on given profile
-	walkPointFollower = get_node("WalkPointFollower")
+	walkPointFollower = get_node_or_null("WalkPointFollower")
 	isBattling = true # TODO: set this later, once we can drag towers
 	isAlive = true
 	id = 1 # should maybe come from global, but might be okay since we just want this unit object to be unique between pooling itself
-	
+
+func setIsBattling(newIsBattling):
+	isBattling = newIsBattling
+
+func removeFromBattle():
+	if (currentSpot != null): currentSpot.removeUnit(self)
+	setIsBattling(false)
+	currentSpot = null
+	# TODO: Create a spot for towers to go when out of battle
+	transform.origin = Vector3(0, 0, 0)
+
 func reset():
 	setLife(totalLife)
 	id += 1 # increase id since we are not the same unit

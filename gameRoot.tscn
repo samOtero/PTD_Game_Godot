@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
+[ext_resource path="res://ui/UITowerBtn.tscn" type="PackedScene" id=1]
 [ext_resource path="res://level/waves/WaveManager.gd" type="Script" id=2]
 [ext_resource path="res://level/WalkPoint.tscn" type="PackedScene" id=3]
 [ext_resource path="res://units/UnitEnemyContainer.tscn" type="PackedScene" id=4]
@@ -7,6 +8,8 @@
 [ext_resource path="res://level/CandyContainer.tscn" type="PackedScene" id=6]
 [ext_resource path="res://effects/EventContainer.tscn" type="PackedScene" id=7]
 [ext_resource path="res://units/UnitTowerContainer.tscn" type="PackedScene" id=8]
+[ext_resource path="res://level/TowerSpot.tscn" type="PackedScene" id=9]
+[ext_resource path="res://level/events/EventUnitDrag.gd" type="Script" id=10]
 
 [sub_resource type="SpatialMaterial" id=1]
 albedo_color = Color( 0.337255, 0.678431, 0.396078, 1 )
@@ -21,20 +24,25 @@ material = SubResource( 1 )
 [node name="EventUnitLeft" type="Node" parent="Events"]
 script = ExtResource( 5 )
 
+[node name="EventUnitDrag" type="Control" parent="Events"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 10 )
+
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.422618, 0.906308, 0, -0.906308, 0.422618, 0, 37, 21.205 )
-fov = 49.9
+transform = Transform( 1, 0, 0, 0, 0.422618, 0.906308, 0, -0.906308, 0.422618, 0, 37, 20.008 )
+fov = 32.5
 
 [node name="Path1" type="Node" parent="."]
 
 [node name="WalkPoint" parent="Path1" instance=ExtResource( 3 )]
-transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -23.7872, 0, -14.1526 )
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -19.114, 0, -8 )
 forwardDirection = 2
 backwardDirection = 3
 nextPointPath = NodePath("../WalkPoint2")
 
 [node name="WalkPoint2" parent="Path1" instance=ExtResource( 3 )]
-transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 13.9812, 0, -14.153 )
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 11, 0, -8 )
 pointId = 2
 forwardDirection = 1
 backwardDirection = 3
@@ -42,21 +50,21 @@ nextPointPath = NodePath("../WalkPoint3")
 prevPointPath = NodePath("../WalkPoint")
 
 [node name="WalkPoint3" parent="Path1" instance=ExtResource( 3 )]
-transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 13.9812, 0, 13.9357 )
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 11.001, -0.038, 11 )
 pointId = 3
 forwardDirection = 2
 nextPointPath = NodePath("../WalkPoint4")
 prevPointPath = NodePath("../WalkPoint2")
 
 [node name="WalkPoint4" parent="Path1" instance=ExtResource( 3 )]
-transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 27.0124, 0, 13.9357 )
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 22.5476, 0, 11 )
 pointId = 4
 forwardDirection = 2
 backwardDirection = 3
 prevPointPath = NodePath("../WalkPoint3")
 
 [node name="Floor" type="MeshInstance" parent="."]
-transform = Transform( 20, 0, 0, 0, 1, 0, 0, 0, 20, 0, -1, 0 )
+transform = Transform( 17.547, 0, 0, 0, 1, 0, 0, 0, 13.753, 0, -1, 0 )
 mesh = SubResource( 2 )
 skeleton = NodePath("")
 material/0 = null
@@ -66,7 +74,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.97838 )
 unitName = "0019_ratty"
 
 [node name="UnitTowerContainer" parent="." instance=ExtResource( 8 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.1941, 0, -11.1915 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.706657, 1, 2.51422 )
 
 [node name="WaveManager" type="Node" parent="."]
 script = ExtResource( 2 )
@@ -75,21 +83,40 @@ path1Path = NodePath("../Path1/WalkPoint")
 [node name="Candy" type="Node" parent="."]
 
 [node name="CandyContainer" parent="Candy" instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17.9069, 0.358546, 14.2536 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 14.7971, 0.358546, 10.8359 )
 
 [node name="CandyContainer2" parent="Candy" instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16.8939, 0.358546, 14.7481 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.7841, 0.358546, 11.3304 )
 
 [node name="CandyContainer3" parent="Candy" instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16.8939, 0.358546, 13.7786 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.7841, 0.358546, 10.3609 )
 
 [node name="CandyContainer4" parent="Candy" instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18.7587, 0.358546, 13.7786 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15.6489, 0.358546, 10.3609 )
 
 [node name="CandyContainer5" parent="Candy" instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18.7587, 0.358546, 14.754 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15.6489, 0.358546, 11.3363 )
 
 [node name="CandyContainer6" parent="Candy" instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19.5772, 0.358546, 14.4431 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4674, 0.358546, 11.0254 )
 
 [node name="EventContainer" parent="." groups=["effectContainer"] instance=ExtResource( 7 )]
+
+[node name="UITowerBtn" parent="." instance=ExtResource( 1 )]
+anchor_left = 0.052
+anchor_top = 0.917
+anchor_right = 0.052
+anchor_bottom = 0.917
+margin_left = -0.248001
+margin_top = -77.2
+margin_right = 84.752
+margin_bottom = -1.20001
+
+[node name="TowerSpot" parent="." instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 0.1, 0, 0, 0, 1, 7.40222, 0.0582211, -4.69691 )
+
+[node name="TowerSpot3" parent="." instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 0.1, 0, 0, 0, 1, -11.1599, 0.0582211, -4.69691 )
+
+[node name="TowerSpot2" parent="." instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 0.1, 0, 0, 0, 1, 7.40222, 0.0582211, 8.28743 )
