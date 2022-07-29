@@ -15,6 +15,8 @@ var isPhysical: bool
 var stab: float
 var isNonDamagingAttack: bool
 
+enum DIRECTION { NORTH, SOUTH, EAST, WEST }
+
 
 func _init(newUnit: Spatial):
 	unit = newUnit
@@ -55,3 +57,22 @@ func getTargetInRange():
 	
 func getEffectContainer():
 	return get_tree().get_nodes_in_group("effectContainer")[0]
+	
+func faceTarget(target):
+	var targetLoc = target.transform.origin
+	var atkZ = unit.transform.origin.z
+	var atkX = unit.transform.origin.x
+	var zDelta = abs(atkZ - targetLoc.z)
+	var xDelta = abs(atkX - targetLoc.x)
+	var newDirection = DIRECTION.NORTH
+	if (zDelta > xDelta):
+		if (atkZ > targetLoc.z):
+			newDirection = DIRECTION.NORTH
+		else:
+			newDirection = DIRECTION.SOUTH
+	else:
+		if (atkX > targetLoc.x):
+			newDirection = DIRECTION.WEST
+		else:
+			newDirection = DIRECTION.EAST
+	unit.faceDirection(newDirection)

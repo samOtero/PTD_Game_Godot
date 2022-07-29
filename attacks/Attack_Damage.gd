@@ -18,6 +18,7 @@ func doAttackActual():
 	#Get target in range
 	var target = getTargetInRange()
 	if (target != null):
+		faceTarget(target)
 		var damageFx = Effect_Damage.new(target, unit, power, attackerNeedsAlive)
 		damageFx.doInit(getEffectContainer())
 		reset()
