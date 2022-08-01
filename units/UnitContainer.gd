@@ -8,12 +8,15 @@ var lifePercent
 var currentSpeed = 7.0 # TODO: Get this from profile and calculation
 var isBattling
 var isAlive
+var isHidding
 var id
 
 var walkPointFollower
 
 # Stores the spot a tower is on, if any
 var currentSpot
+
+var unitMesh
 
 enum DIRECTION { NORTH, SOUTH, EAST, WEST }
 
@@ -29,8 +32,11 @@ func _ready():
 	# Initialize the life bar
 	# TODO: should be based on profile eventually
 	lifeBar.init(false, 100)
-	totalLife = 100
+	totalLife = 200
 	setLife(totalLife)
+	
+	#Get unit mesh
+	unitMesh = get_node(unitName + "_unit/"+unitName + "_gfx/"+unitName)
 	doInit(null)
 
 
@@ -39,6 +45,7 @@ func doInit(_unitProfile):
 	walkPointFollower = get_node_or_null("WalkPointFollower")
 	isBattling = true # TODO: set this later, once we can drag towers
 	isAlive = true
+	isHidding = false
 	id = 1 # should maybe come from global, but might be okay since we just want this unit object to be unique between pooling itself
 
 func setIsBattling(newIsBattling):
@@ -59,6 +66,9 @@ func reset():
 func setLife(newLife):
 	currentLife = newLife
 	doLifeChange()
+	
+func isTargetable():
+	return isAlive && !isHidding && isBattling;
 	
 func doLifeChange():
 	lifePercent = (float(currentLife) / totalLife) * 100.0
@@ -105,3 +115,16 @@ func getRotationFromDirection(whichDirection):
 	
 func getID():
 	return id
+	
+func doFade(newFade):
+	if (newFade >= 1):
+		# Fully show unit
+		unitMesh.set_material_override(null)
+	else:
+		# Go to fade mode
+		var originalMaterial = unitMesh.get_active_material(0)
+		var material = SpatialMaterial.new()
+		material.flags_transparent = true
+		material.albedo_color = Color(1, 1, 1, newFade)
+		material.albedo_texture = originalMaterial.albedo_texture
+		unitMesh.set_material_override(material)

@@ -10,7 +10,7 @@ func _ready():
 	#TODO: Remove this
 	unit.isBattling = true
 	#TODO: set attack, this should be done via profile and attack initilization
-	attack1 = Attack_Damage.new(unit)
+	attack1 = Attack_Projectile.new(unit)
 	add_child(attack1)
 
 

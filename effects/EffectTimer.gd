@@ -6,9 +6,9 @@ class_name EffectTimer
 func _init(newDelay: int = 0, newTag: String = "", newTag2: String = "").(newDelay, newTag, newTag2):
 	pass
 	
-func doRunCustom():
+func doRunCustom(delta):
 	# Call parent class version
-	.doRunCustom()
+	.doRunCustom(delta)
 	if (needRemove == true): return
 	doCleanUp()
 		

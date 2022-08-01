@@ -8,7 +8,7 @@ albedo_texture = ExtResource( 2 )
 
 [node name="0019_ratty_gfx" type="Spatial"]
 
-[node name="0020_rattata" type="MeshInstance" parent="."]
+[node name="0019_ratty" type="MeshInstance" parent="."]
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -0.892963, -3.98278, 1.00565 )
 mesh = ExtResource( 1 )
 material/0 = SubResource( 1 )
