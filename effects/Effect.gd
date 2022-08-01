@@ -54,22 +54,22 @@ func doPause():
 func doPauseCustom():
 	pass
 	
-func _on_doRun():
+func _on_doRun(delta):
 	if (needRemove == true): return
 	
 	if (delay > 0):
 		delay -= 1
 		return
-	doRunCustom()
+	doRunCustom(delta)
 	if (haveStackedEffects()):
 		for effect in stackedEffects:
-			effect.doRun()
+			effect._on_doRun(delta)
 			
 	if (needRemove == true):
 		doRemove();
 		
 # Implement in subclasses	
-func doRunCustom():
+func doRunCustom(_delta):
 	pass
 	
 func doInit(newContainer: Node):

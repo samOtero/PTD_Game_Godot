@@ -13,11 +13,9 @@ func do_unit_start_drag(whichUnit, fromUIButton):
 	
 
 func do_enter_spot(whichSpot):
-	print("enter spot event triggered!")
 	selectedSpot = whichSpot
 	
 func do_exit_spot(_whichSpot):
-	print ("exit spot event triggered!")
 	selectedSpot = null
 	
 func _input(event):

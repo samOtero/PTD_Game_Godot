@@ -10,8 +10,8 @@ func _init(newTarget: Spatial, newFromWho: Spatial, newAmount:int, newAttackerNe
 	amount = newAmount
 	attackerNeedsAlive = newAttackerNeedsAlive
 
-func doRunCustom():
-	.doRunCustom()
+func doRunCustom(delta):
+	.doRunCustom(delta)
 	if (needRemove == true): return
 	if (attackerNeedsAlive == true && fromWho.isAlive == false):
 		doCleanUp()
