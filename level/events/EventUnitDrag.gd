@@ -7,7 +7,6 @@ var selectedSpot
 
 
 func do_unit_start_drag(whichUnit, fromUIButton):
-	print('unit start drag event triggered! sending it to all registered nodes!')
 	draggedUnit = whichUnit
 	emit_signal("unit_start_drag", whichUnit, fromUIButton)
 	

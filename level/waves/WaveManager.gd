@@ -23,6 +23,14 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	if (!tempFlag):
+		# TODO: Remove me!!
+		var newProfile = UnitProfile.new()
+		newProfile.unitID = 19
+		UnitProfile.GetBaseValues(newProfile)
+		var newEnemy = UnitProfile.CreateEnemy(newProfile, owner)
+		var wayPointFollower = newEnemy.get_node("WalkPointFollower")
+		var path = get_tree().get_root().get_node("GameRoot/Path1/WalkPoint")
+		wayPointFollower.reset(path)
 		tempFlag = true
 		
 func _on_Unit_Left_Event(whichUnit):
