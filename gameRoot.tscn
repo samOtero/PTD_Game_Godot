@@ -1,9 +1,8 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://ui/UITowerBtn.tscn" type="PackedScene" id=1]
 [ext_resource path="res://level/waves/WaveManager.gd" type="Script" id=2]
 [ext_resource path="res://level/WalkPoint.tscn" type="PackedScene" id=3]
-[ext_resource path="res://units/UnitEnemyContainer.tscn" type="PackedScene" id=4]
 [ext_resource path="res://level/events/EventUnitLeft.gd" type="Script" id=5]
 [ext_resource path="res://level/CandyContainer.tscn" type="PackedScene" id=6]
 [ext_resource path="res://effects/EventContainer.tscn" type="PackedScene" id=7]
@@ -68,10 +67,6 @@ transform = Transform( 17.547, 0, 0, 0, 1, 0, 0, 0, 13.753, 0, -1, 0 )
 mesh = SubResource( 2 )
 skeleton = NodePath("")
 material/0 = null
-
-[node name="UnitEnemyContainer" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.97838 )
-unitName = "0019_ratty"
 
 [node name="UnitTowerContainer" parent="." instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.706657, 1, 2.51422 )

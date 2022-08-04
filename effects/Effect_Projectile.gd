@@ -49,7 +49,6 @@ func doRunCustom(delta):
 	
 	# Check if we hit our target
 	if (checkIfHitTarget(delta)):
-		print("got to the target!")
 		hitTarget()
 		
 # Returns true if we reached out target location

@@ -31,12 +31,8 @@ func _ready():
 	candyRange = pow(0.7, 2) # using to calculate distance squared
 	
 	# Getting a reference of our unit left event
-	unitLeftEvent = owner.owner.get_node_or_null("Events/EventUnitLeft")
+	unitLeftEvent = get_node("/root").get_node_or_null("GameRoot/Events/EventUnitLeft")
 	if (unitLeftEvent == null): print('WalkPointFollower: MISSING unitLeftEvent, this should only happen when testing without events, will use backup functionality!')
-	
-	#TODO: remove this, just using it for testing
-	var startPoint = owner.owner.get_node("Path1/WalkPoint")
-	reset(startPoint)
 	
 func reset(startPoint):
 	initialPoint = startPoint

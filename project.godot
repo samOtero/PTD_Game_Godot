@@ -58,6 +58,16 @@ _global_script_classes=[ {
 "class": "GitAPI",
 "language": "NativeScript",
 "path": "res://addons/godot-git-plugin/git_api.gdns"
+}, {
+"base": "Node",
+"class": "UnitBaseInfo",
+"language": "GDScript",
+"path": "res://units/scripts/unitBaseInfo.gd"
+}, {
+"base": "Node",
+"class": "UnitProfile",
+"language": "GDScript",
+"path": "res://units/scripts/unitProfile.gd"
 } ]
 _global_script_class_icons={
 "Attack": "",
@@ -69,7 +79,9 @@ _global_script_class_icons={
 "Effect_Damage": "",
 "Effect_Fade": "",
 "Effect_Projectile": "",
-"GitAPI": ""
+"GitAPI": "",
+"UnitBaseInfo": "",
+"UnitProfile": ""
 }
 
 [application]
