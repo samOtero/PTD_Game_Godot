@@ -1,0 +1,20 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://level/waves/WaveProfile.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+unitID = 19
+level = 1
+nickname = ""
+canCaptureMe = true
+attackSelected = 0
+attack1Id = 1
+attack2Id = 0
+attack3Id = 0
+attack4Id = 0
+modHP = 1
+canCaptureCandy = true
+freeRoam = false
+nonDamagingAttacksOnly = true
+special = 0

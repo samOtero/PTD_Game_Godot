@@ -45,16 +45,16 @@ func doAttackActual():
 
 func getTargetInRange():
 	#TODO: Add Range to equation
-	#TODO: Figure out not getting the list every time
+	#TODO: Figure out not getting the list every time, maybe this is okay
 	var enemyList = get_tree().get_nodes_in_group("enemy");
 	if (enemyList.size() == 0):
 		return null
-	# TODO: Don't only check one enemy but all in the level
-	var target = enemyList[0]
-	var targetLoc = Vector2(target.transform.origin.x, target.transform.origin.z)
+	# Find the first closest target
 	var attackerLoc = Vector2(unit.transform.origin.x, unit.transform.origin.z)
-	var distance = targetLoc.distance_squared_to(attackerLoc)
-	if (distance <= atkRange): return target
+	for target in enemyList:
+		var targetLoc = Vector2(target.transform.origin.x, target.transform.origin.z)
+		var distance = targetLoc.distance_squared_to(attackerLoc)
+		if (distance <= atkRange): return target
 	return null
 	
 func getEffectContainer():
