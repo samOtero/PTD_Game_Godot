@@ -6,6 +6,10 @@ extends Node
 # var b = "text"
 
 export var path1Path: NodePath
+var isCompleted: bool
+var waveNum: int
+var currentContainer: Node
+var containerList: Array
 var path1
 
 var tempFlag = false
@@ -13,25 +17,44 @@ var tempFlag = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	isCompleted = false
+	waveNum = 1
+	containerList = get_children()
 	path1 = get_node(path1Path)
 	# Connect to event signal
-	var unitLeftEvent = owner.get_node("Events/EventUnitLeft")
-	if (unitLeftEvent != null): unitLeftEvent.connect("unit_left", self, "_on_Unit_Left_Event")
-	else: print("WaveManager: MISSING unitLeftEvent!")
-
+	var levelEvents = get_node("/root").get_node("GameRoot/Events/LevelEvents")
+	if (levelEvents != null):
+		levelEvents.connect("unit_left", self, "_on_Unit_Left_Event")
+		levelEvents.connect("spawn_unit_in_path", self, "_onSpawnUnitInPath")
+	else: print("WaveManager: MISSING levelEvents!")
+	setContainer()
+	
+func setContainer():
+	if (containerList.size() < waveNum):
+		isCompleted = true
+		return
+	currentContainer = containerList[waveNum -1]
+	
+func _onSpawnUnitInPath(newProfile: UnitProfile, _pathNum: int):
+	# TODO: Get path based on pathNum
+	var path = path1;
+	var newEnemy = UnitProfile.CreateEnemy(newProfile, owner)
+	var wayPointFollower = newEnemy.get_node("WalkPointFollower")
+	wayPointFollower.reset(path)
+	
+func _onRun():
+	if (isCompleted == true): return
+	if (currentContainer.isCompleted == true):
+		waveNum += 1
+		setContainer()
+		return
+	currentContainer._onRun()
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	if (!tempFlag):
-		# TODO: Remove me!!
-		var newProfile = UnitProfile.new()
-		newProfile.unitID = 19
-		UnitProfile.GetBaseValues(newProfile)
-		var newEnemy = UnitProfile.CreateEnemy(newProfile, owner)
-		var wayPointFollower = newEnemy.get_node("WalkPointFollower")
-		var path = get_tree().get_root().get_node("GameRoot/Path1/WalkPoint")
-		wayPointFollower.reset(path)
-		tempFlag = true
+	_onRun()
+	
 		
 func _on_Unit_Left_Event(whichUnit):
 	# Remove from game

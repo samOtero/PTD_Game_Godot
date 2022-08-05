@@ -125,8 +125,9 @@ static func GetBaseValues(profile) -> void:
 	profile.baseSpAttack = baseInfo.baseSpAttack
 	profile.baseSpDefense = baseInfo.baseSpDefense
 	profile.baseExperience = baseInfo.baseExperience
+	profile.baseHP = baseInfo.baseHP
 	profile.elements = baseInfo.elements
-	# TODO: Add HP and Speed once those are implemented better
+	# TODO: Speed once those are implemented better
 	
 static func CreateEnemy(newProfile, parentNode) -> Node:
 	var containerScene = preload('res://units/UnitEnemyContainer.tscn')

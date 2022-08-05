@@ -1,14 +1,17 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://ui/UITowerBtn.tscn" type="PackedScene" id=1]
 [ext_resource path="res://level/waves/WaveManager.gd" type="Script" id=2]
 [ext_resource path="res://level/WalkPoint.tscn" type="PackedScene" id=3]
-[ext_resource path="res://level/events/EventUnitLeft.gd" type="Script" id=5]
+[ext_resource path="res://level/waves/levels/level1/ratty_profile.tres" type="Resource" id=4]
+[ext_resource path="res://level/events/LevelEvents.gd" type="Script" id=5]
 [ext_resource path="res://level/CandyContainer.tscn" type="PackedScene" id=6]
 [ext_resource path="res://effects/EventContainer.tscn" type="PackedScene" id=7]
 [ext_resource path="res://units/UnitTowerContainer.tscn" type="PackedScene" id=8]
 [ext_resource path="res://level/TowerSpot.tscn" type="PackedScene" id=9]
 [ext_resource path="res://level/events/EventUnitDrag.gd" type="Script" id=10]
+[ext_resource path="res://level/waves/WaveSegment.tscn" type="PackedScene" id=11]
+[ext_resource path="res://level/waves/WaveSegmentContainer.tscn" type="PackedScene" id=12]
 
 [sub_resource type="SpatialMaterial" id=1]
 albedo_color = Color( 0.337255, 0.678431, 0.396078, 1 )
@@ -20,7 +23,7 @@ material = SubResource( 1 )
 
 [node name="Events" type="Node" parent="."]
 
-[node name="EventUnitLeft" type="Node" parent="Events"]
+[node name="LevelEvents" type="Node" parent="Events"]
 script = ExtResource( 5 )
 
 [node name="EventUnitDrag" type="Control" parent="Events"]
@@ -74,6 +77,44 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.706657, 1, 2.51422 )
 [node name="WaveManager" type="Node" parent="."]
 script = ExtResource( 2 )
 path1Path = NodePath("../Path1/WalkPoint")
+
+[node name="Wave1" parent="WaveManager" instance=ExtResource( 12 )]
+
+[node name="Segment1" parent="WaveManager/Wave1" instance=ExtResource( 11 )]
+waveProfile = ExtResource( 4 )
+totalUnitsToSpawn = 1
+
+[node name="Wave 2" parent="WaveManager" instance=ExtResource( 12 )]
+
+[node name="Segment 1" parent="WaveManager/Wave 2" instance=ExtResource( 11 )]
+waveProfile = ExtResource( 4 )
+totalUnitsToSpawn = 2
+startDelay = 600
+betweenDelay = 72
+
+[node name="Wave 3" parent="WaveManager" instance=ExtResource( 12 )]
+
+[node name="Segment 1" parent="WaveManager/Wave 3" instance=ExtResource( 11 )]
+waveProfile = ExtResource( 4 )
+totalUnitsToSpawn = 3
+startDelay = 600
+betweenDelay = 72
+
+[node name="Wave 4" parent="WaveManager" instance=ExtResource( 12 )]
+
+[node name="Segment 1" parent="WaveManager/Wave 4" instance=ExtResource( 11 )]
+waveProfile = ExtResource( 4 )
+totalUnitsToSpawn = 4
+startDelay = 600
+betweenDelay = 72
+
+[node name="Wave 5" parent="WaveManager" instance=ExtResource( 12 )]
+
+[node name="Segment 1" parent="WaveManager/Wave 5" instance=ExtResource( 11 )]
+waveProfile = ExtResource( 4 )
+totalUnitsToSpawn = 5
+startDelay = 600
+betweenDelay = 72
 
 [node name="Candy" type="Node" parent="."]
 
