@@ -1,17 +1,19 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://ui/UITowerBtn.tscn" type="PackedScene" id=1]
 [ext_resource path="res://level/waves/WaveManager.gd" type="Script" id=2]
 [ext_resource path="res://level/WalkPoint.tscn" type="PackedScene" id=3]
 [ext_resource path="res://level/waves/levels/level1/ratty_profile.tres" type="Resource" id=4]
-[ext_resource path="res://level/events/LevelEvents.gd" type="Script" id=5]
+[ext_resource path="res://level/events/EventUnitDrag.tscn" type="PackedScene" id=5]
 [ext_resource path="res://level/CandyContainer.tscn" type="PackedScene" id=6]
 [ext_resource path="res://effects/EventContainer.tscn" type="PackedScene" id=7]
 [ext_resource path="res://units/UnitTowerContainer.tscn" type="PackedScene" id=8]
 [ext_resource path="res://level/TowerSpot.tscn" type="PackedScene" id=9]
-[ext_resource path="res://level/events/EventUnitDrag.gd" type="Script" id=10]
+[ext_resource path="res://level/events/EventCapture.tscn" type="PackedScene" id=10]
 [ext_resource path="res://level/waves/WaveSegment.tscn" type="PackedScene" id=11]
 [ext_resource path="res://level/waves/WaveSegmentContainer.tscn" type="PackedScene" id=12]
+[ext_resource path="res://ui/CaptureBtn.tscn" type="PackedScene" id=13]
+[ext_resource path="res://level/events/LevelEvents.tscn" type="PackedScene" id=14]
 
 [sub_resource type="SpatialMaterial" id=1]
 albedo_color = Color( 0.337255, 0.678431, 0.396078, 1 )
@@ -23,13 +25,11 @@ material = SubResource( 1 )
 
 [node name="Events" type="Node" parent="."]
 
-[node name="LevelEvents" type="Node" parent="Events"]
-script = ExtResource( 5 )
+[node name="LevelEvents" parent="Events" instance=ExtResource( 14 )]
 
-[node name="EventUnitDrag" type="Control" parent="Events"]
-margin_right = 40.0
-margin_bottom = 40.0
-script = ExtResource( 10 )
+[node name="EventUnitDrag" parent="Events" instance=ExtResource( 5 )]
+
+[node name="EventCapture" parent="Events" instance=ExtResource( 10 )]
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.422618, 0.906308, 0, -0.906308, 0.422618, 0, 37, 20.008 )
@@ -156,3 +156,5 @@ transform = Transform( 1, 0, 0, 0, 0.1, 0, 0, 0, 1, -11.1599, 0.0582211, -4.6969
 
 [node name="TowerSpot2" parent="." instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 0.1, 0, 0, 0, 1, 7.40222, 0.0582211, 8.28743 )
+
+[node name="CaptureBtn" parent="." instance=ExtResource( 13 )]

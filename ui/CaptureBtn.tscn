@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://ui/CaptureBtn.gd" type="Script" id=1]
+
+[node name="CaptureBtn" type="Button"]
+margin_left = 850.0
+margin_top = 480.0
+margin_right = 961.0
+margin_bottom = 543.0
+action_mode = 0
+keep_pressed_outside = true
+text = "Capture"
+script = ExtResource( 1 )

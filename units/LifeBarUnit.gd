@@ -4,7 +4,7 @@ export var lifePercent = 100
 export var weakStyle: Resource
 export var nonCatchableStyle: Resource
 export var isNonCatchable = false
-export var weakRange = 50
+export var weakRange = 20
 var progressBar
 var foreground
 var isInit = false
@@ -20,8 +20,9 @@ func _ready():
 	update_life_bar()
 
 # Init our lifebar with the unit's initial values
-func init(initialIsNonCatchable, newLifePercent):
+func init(initialIsNonCatchable, newLifePercent, newWeakRange):
 	isNonCatchable = initialIsNonCatchable
+	weakRange = newWeakRange
 	# Set the blue color for non catchable units
 	if (isNonCatchable):
 		progressBar.add_stylebox_override("fg", nonCatchableStyle)

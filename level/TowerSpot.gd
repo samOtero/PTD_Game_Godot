@@ -7,7 +7,7 @@ var unitDragEvent
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# Getting a reference of our unit start drag event
-	unitDragEvent = owner.get_node_or_null("Events/EventUnitDrag")
+	unitDragEvent =  get_node("/root").get_node_or_null("GameRoot/Events/EventUnitDrag")
 	if (unitDragEvent == null): print('Tower Spot: MISSING unitDragEvent, will prevent functionality of dragging a unit from a spot!')
 
 func _on_entered():
