@@ -1,8 +1,8 @@
 extends Spatial
 
 export var lifePercent = 100
-export var weakColor = Color(0.86, 0.03, 0.07, 1)
-export var nonCatchableColor = Color(0.23, 0.26, 0.91, 1)
+export var weakStyle: Resource
+export var nonCatchableStyle: Resource
 export var isNonCatchable = false
 export var weakRange = 50
 var progressBar
@@ -24,7 +24,7 @@ func init(initialIsNonCatchable, newLifePercent):
 	isNonCatchable = initialIsNonCatchable
 	# Set the blue color for non catchable units
 	if (isNonCatchable):
-		foreground.set_bg_color(nonCatchableColor)
+		progressBar.add_stylebox_override("fg", nonCatchableStyle)
 	set_life_percent(newLifePercent)
 	isInit = true
 	
@@ -38,7 +38,7 @@ func update_life_bar():
 	progressBar.visible = true
 	if (isNonCatchable == false):
 		if (lifePercent <= weakRange):
-			foreground.set_bg_color(weakColor)
+			progressBar.add_stylebox_override("fg", weakStyle)
 		
 	
 # Set a new life percent and update bar
