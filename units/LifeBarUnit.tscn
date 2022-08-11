@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://units/lifebar_theme.tres" type="Theme" id=1]
 [ext_resource path="res://units/LifeBarUnit.gd" type="Script" id=2]
+[ext_resource path="res://units/weakened_style.tres" type="StyleBox" id=3]
+[ext_resource path="res://units/nonCatchable_style.tres" type="StyleBox" id=4]
 
 [sub_resource type="ViewportTexture" id=1]
 viewport_path = NodePath("Viewport")
@@ -9,7 +11,8 @@ viewport_path = NodePath("Viewport")
 [node name="LifeBarUnit" type="Spatial"]
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
 script = ExtResource( 2 )
-weakColor = Color( 0.858824, 0.0313726, 0.0705882, 1 )
+weakStyle = ExtResource( 3 )
+nonCatchableStyle = ExtResource( 4 )
 
 [node name="Viewport" type="Viewport" parent="."]
 size = Vector2( 100, 14 )
