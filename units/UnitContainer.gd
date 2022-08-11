@@ -6,6 +6,7 @@ var totalLife
 var currentLife
 var lifePercent
 var currentSpeed = 7.0 # TODO: Get this from profile and calculation
+var weakPercentRage = 20
 var isBattling
 var isAlive
 var isHidding
@@ -18,10 +19,16 @@ var currentSpot
 
 var unitMesh
 
+# Events
+var unitCaptureEvent
+
 enum DIRECTION { NORTH, SOUTH, EAST, WEST }
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	# Getting a reference of our unit capture event
+	unitCaptureEvent =  get_node("/root").get_node_or_null("GameRoot/Events/EventCapture")
+	if (unitCaptureEvent == null): print('Unit Container: MISSING unitCaptureEvent, will prevent functionality of capturing a unit!')
 	#TODO: This will probably move to Init since we won't know unitName until then
 	# Add this units graphic to this container
 	var unitScene = load("res://units/"+unitName+"_unit.tscn")
@@ -31,8 +38,8 @@ func _ready():
 	lifeBar = get_node(unitName + "_unit/LifeBarUnit")
 	# Initialize the life bar
 	# TODO: should be based on profile eventually
-	lifeBar.init(false, 100)
-	totalLife = 200
+	lifeBar.init(false, 100, weakPercentRage)
+	totalLife = 60
 	setLife(totalLife)
 	
 	#Get unit mesh
@@ -47,6 +54,12 @@ func doInit(_unitProfile):
 	isAlive = true
 	isHidding = false
 	id = 1 # should maybe come from global, but might be okay since we just want this unit object to be unique between pooling itself
+	
+func _on_mouse_entered():
+	unitCaptureEvent.do_hover_unit(self)
+	
+func _on_mouse_exited():
+	unitCaptureEvent.do_exit_unit(self)
 
 func setIsBattling(newIsBattling):
 	isBattling = newIsBattling
@@ -93,6 +106,18 @@ func onDefeat():
 	#TODO: Hide Unit?
 	#TODO: Send unit defeated event
 	queue_free()
+	
+func canCapture():
+	# TODO: Check if we can even capture this unit
+	if (lifePercent <= weakPercentRage): return true
+	return false
+	
+func doCapture():
+	if (canCapture() == false): return false
+	# TODO: Factor some of this out to it's own thing
+	onDefeat()
+	# TODO: Send event for capturinig this unit
+	return true
 	
 func faceDirection(newDirection):
 	var rotation = getRotationFromDirection(newDirection)
