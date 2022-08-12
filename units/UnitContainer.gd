@@ -5,7 +5,7 @@ var lifeBar
 var totalLife
 var currentLife
 var lifePercent
-var currentSpeed = 7.0 # TODO: Get this from profile and calculation
+var currentSpeed = 4.0 # TODO: Get this from profile and calculation
 var weakPercentRage = 20
 var isBattling
 var isAlive
@@ -39,7 +39,7 @@ func _ready():
 	# Initialize the life bar
 	# TODO: should be based on profile eventually
 	lifeBar.init(false, 100, weakPercentRage)
-	totalLife = 60
+	totalLife = 100
 	setLife(totalLife)
 	
 	#Get unit mesh

@@ -74,7 +74,9 @@ func create_projectile():
 	rotationGfx = projectileGfx.get_node(fromWho.unitName)
 
 func updateTargetLocation():
-	if (target == null): return;
+	if (target == null || !weakref(target).get_ref()):
+		target = null;
+		return;
 	# If we have a target and it's dead then don't update our location
 	if (target.isTargetable() == false || target.getID() != targetId):
 		target = null # Target is dead let's get rid of it and hit our last target

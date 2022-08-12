@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://ui/UITowerBtn.tscn" type="PackedScene" id=1]
 [ext_resource path="res://level/waves/WaveManager.gd" type="Script" id=2]
@@ -14,6 +14,8 @@
 [ext_resource path="res://level/waves/WaveSegmentContainer.tscn" type="PackedScene" id=12]
 [ext_resource path="res://ui/CaptureBtn.tscn" type="PackedScene" id=13]
 [ext_resource path="res://level/events/LevelEvents.tscn" type="PackedScene" id=14]
+[ext_resource path="res://level/events/RunEvent.tres" type="Resource" id=15]
+[ext_resource path="res://level/events/LevelSpeedManager.tscn" type="PackedScene" id=16]
 
 [sub_resource type="SpatialMaterial" id=1]
 albedo_color = Color( 0.337255, 0.678431, 0.396078, 1 )
@@ -30,6 +32,8 @@ material = SubResource( 1 )
 [node name="EventUnitDrag" parent="Events" instance=ExtResource( 5 )]
 
 [node name="EventCapture" parent="Events" instance=ExtResource( 10 )]
+
+[node name="LevelSpeedManager" parent="Events" instance=ExtResource( 16 )]
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.422618, 0.906308, 0, -0.906308, 0.422618, 0, 37, 20.008 )
@@ -77,6 +81,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.706657, 1, 2.51422 )
 [node name="WaveManager" type="Node" parent="."]
 script = ExtResource( 2 )
 path1Path = NodePath("../Path1/WalkPoint")
+RunEvent = ExtResource( 15 )
 
 [node name="Wave1" parent="WaveManager" instance=ExtResource( 12 )]
 

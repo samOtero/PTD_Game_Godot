@@ -1,0 +1,10 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://level/events/LevelSpeedManager.gd" type="Script" id=1]
+[ext_resource path="res://level/events/PauseState.tres" type="Resource" id=2]
+[ext_resource path="res://level/events/RunEvent.tres" type="Resource" id=3]
+
+[node name="LevelSpeedManager" type="Node"]
+script = ExtResource( 1 )
+PauseStatus = ExtResource( 2 )
+RunEvent = ExtResource( 3 )

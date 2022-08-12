@@ -21,6 +21,7 @@ var velocityVector
 var candyList
 var eventsRegistered = false
 var levelEvents
+export var RunEvent: Resource
 
 enum DIRECTION { NORTH, SOUTH, EAST, WEST }
 
@@ -29,6 +30,9 @@ enum DIRECTION { NORTH, SOUTH, EAST, WEST }
 func _ready():
 	unit = owner
 	candyRange = pow(0.7, 2) # using to calculate distance squared
+	
+	# Connect to do_run signal from event
+	var _error_code = RunEvent.connect("do_run", self, "_onRun")
 	
 	# Getting a reference of our unit left event
 	levelEvents = get_node("/root").get_node_or_null("GameRoot/Events/LevelEvents")
@@ -135,7 +139,7 @@ func getNewRotation(whichPoint, isTurnedAround):
 	currentDirection = newDirection
 	unit.faceDirection(currentDirection)
 	
-func onDoRun(delta):
+func _onRun(delta):
 	if (unit == null): return 0
 	if (currentPoint == null): return 0
 	# move unit forward in our direction
@@ -159,9 +163,3 @@ func checkIfReachedPoint():
 		
 	if (reachedPoint == true): setNewPoint(targetPoint)
 	return reachedPoint
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	#TODO: remove this, since it should be triggered by higher function, only have it here for testing purposes
-	onDoRun(delta)
