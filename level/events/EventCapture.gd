@@ -3,16 +3,20 @@ extends Control
 signal started_capturing
 signal end_capturing
 
+export var PauseStatus: Resource
+
 var selectedUnit
 var isCapturing: bool
 
 func do_start_capturing():
 	isCapturing = true
 	emit_signal("started_capturing")
+	PauseStatus.doPause(); # Pause when we start dragging our capture
 	
 func do_end_capturing():
 	isCapturing = false
 	emit_signal("end_capturing")
+	PauseStatus.doUnpause();
 	
 
 func do_hover_unit(whichUnit):

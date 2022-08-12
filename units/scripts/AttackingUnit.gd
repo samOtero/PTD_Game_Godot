@@ -1,5 +1,6 @@
 extends Node
 
+export var RunEvent: Resource
 var unit: Node
 var attack1: Attack
 
@@ -12,15 +13,11 @@ func _ready():
 	#TODO: set attack, this should be done via profile and attack initilization
 	attack1 = Attack_Projectile.new(unit)
 	add_child(attack1)
+	
+	# Connect to do_run signal from event
+	var _error_code = RunEvent.connect("do_run", self, "_onRun")
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	#TODO: Remove this and connect to the event
-	onDoRun()
-
-
-func onDoRun():
-	# TODO: Pause logic
+func _onRun(_delta):
 	attack1.runCooldown()
 	if (unit.isBattling): attack1.doAttack()

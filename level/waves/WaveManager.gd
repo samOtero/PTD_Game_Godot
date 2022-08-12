@@ -6,6 +6,7 @@ extends Node
 # var b = "text"
 
 export var path1Path: NodePath
+export var RunEvent: Resource
 var isCompleted: bool
 var waveNum: int
 var currentContainer: Node
@@ -17,6 +18,8 @@ var tempFlag = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	# Connect to do_run signal from event
+	var _error_code = RunEvent.connect("do_run", self, "_onRun")
 	isCompleted = false
 	waveNum = 1
 	containerList = get_children()
@@ -42,18 +45,13 @@ func _onSpawnUnitInPath(newProfile: UnitProfile, _pathNum: int):
 	var wayPointFollower = newEnemy.get_node("WalkPointFollower")
 	wayPointFollower.reset(path)
 	
-func _onRun():
+func _onRun(_delta):
 	if (isCompleted == true): return
 	if (currentContainer.isCompleted == true):
 		waveNum += 1
 		setContainer()
 		return
 	currentContainer._onRun()
-	
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	_onRun()
 	
 		
 func _on_Unit_Left_Event(whichUnit):

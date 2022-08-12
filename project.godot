@@ -59,6 +59,16 @@ _global_script_classes=[ {
 "language": "NativeScript",
 "path": "res://addons/godot-git-plugin/git_api.gdns"
 }, {
+"base": "Resource",
+"class": "PauseEvent",
+"language": "GDScript",
+"path": "res://level/events/PauseEvent.gd"
+}, {
+"base": "Resource",
+"class": "RunEvent",
+"language": "GDScript",
+"path": "res://level/events/RunEvent.gd"
+}, {
 "base": "Node",
 "class": "UnitBaseInfo",
 "language": "GDScript",
@@ -85,6 +95,8 @@ _global_script_class_icons={
 "Effect_Fade": "",
 "Effect_Projectile": "",
 "GitAPI": "",
+"PauseEvent": "",
+"RunEvent": "",
 "UnitBaseInfo": "",
 "UnitProfile": "",
 "WaveProfile": ""
