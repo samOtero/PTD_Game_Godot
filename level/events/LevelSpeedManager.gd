@@ -10,3 +10,6 @@ var speed: int = 1
 func _process(delta):
 	if (PauseStatus.isPaused() == true): return # Don't send out run signal if game is paused
 	RunEvent.triggerRun(delta) # This will trigger our Resource to emit the run signal
+	if (speed >= 2): RunEvent.triggerRun(delta)
+	if (speed >= 3): RunEvent.triggerRun(delta)
+	if (speed >= 4): RunEvent.triggerRun(delta)
