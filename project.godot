@@ -64,6 +64,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://level/events/LevelEvents.gd"
 }, {
+"base": "Node",
+"class": "PartyContainer",
+"language": "GDScript",
+"path": "res://level/PartyContainer.gd"
+}, {
 "base": "Resource",
 "class": "PauseEvent",
 "language": "GDScript",
@@ -111,6 +116,7 @@ _global_script_class_icons={
 "Effect_Projectile": "",
 "GitAPI": "",
 "LevelEvent": "",
+"PartyContainer": "",
 "PauseEvent": "",
 "RunEvent": "",
 "UnitBaseInfo": "",

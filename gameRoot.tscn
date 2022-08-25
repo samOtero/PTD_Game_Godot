@@ -7,8 +7,8 @@
 [ext_resource path="res://level/events/InputManager.tscn" type="PackedScene" id=5]
 [ext_resource path="res://level/CandyContainer.tscn" type="PackedScene" id=6]
 [ext_resource path="res://effects/EventContainer.tscn" type="PackedScene" id=7]
-[ext_resource path="res://units/UnitTowerContainer.tscn" type="PackedScene" id=8]
 [ext_resource path="res://level/TowerSpot.tscn" type="PackedScene" id=9]
+[ext_resource path="res://level/PartyManager.tscn" type="PackedScene" id=10]
 [ext_resource path="res://level/waves/WaveSegment.tscn" type="PackedScene" id=11]
 [ext_resource path="res://level/waves/WaveSegmentContainer.tscn" type="PackedScene" id=12]
 [ext_resource path="res://ui/CaptureBtn.tscn" type="PackedScene" id=13]
@@ -23,6 +23,11 @@ albedo_color = Color( 0.337255, 0.678431, 0.396078, 1 )
 material = SubResource( 1 )
 
 [node name="GameRoot" type="Spatial"]
+
+[node name="PartyManager" parent="." instance=ExtResource( 10 )]
+
+[node name="SpawnLocation" type="Spatial" parent="PartyManager"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 0, 100 )
 
 [node name="LevelSpeedManager" parent="." instance=ExtResource( 16 )]
 
@@ -67,10 +72,6 @@ transform = Transform( 17.547, 0, 0, 0, 1, 0, 0, 0, 13.753, 0, -1, 0 )
 mesh = SubResource( 2 )
 skeleton = NodePath("")
 material/0 = null
-
-[node name="UnitTowerContainer" parent="." instance=ExtResource( 8 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.706657, 1, 2.51422 )
-unitCaptureEvent = null
 
 [node name="WaveManager" type="Node" parent="."]
 script = ExtResource( 2 )
