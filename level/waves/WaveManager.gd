@@ -1,12 +1,8 @@
 extends Node
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
 export var path1Path: NodePath
 export var RunEvent: Resource
+export var LevelEvents: Resource
 var isCompleted: bool
 var waveNum: int
 var currentContainer: Node
@@ -25,11 +21,10 @@ func _ready():
 	containerList = get_children()
 	path1 = get_node(path1Path)
 	# Connect to event signal
-	var levelEvents = get_node("/root").get_node("GameRoot/Events/LevelEvents")
-	if (levelEvents != null):
-		levelEvents.connect("unit_left", self, "_on_Unit_Left_Event")
-		levelEvents.connect("spawn_unit_in_path", self, "_onSpawnUnitInPath")
-	else: print("WaveManager: MISSING levelEvents!")
+	if (LevelEvents != null):
+		var _err1 = LevelEvents.connect("unit_left", self, "_on_Unit_Left_Event")
+		var _err2 =  LevelEvents.connect("spawn_unit_in_path", self, "_onSpawnUnitInPath")
+	else: print("WaveManager: MISSING LevelEvents!")
 	setContainer()
 	
 func setContainer():

@@ -1,19 +1,18 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://ui/UITowerBtn.tscn" type="PackedScene" id=1]
 [ext_resource path="res://level/waves/WaveManager.gd" type="Script" id=2]
 [ext_resource path="res://level/WalkPoint.tscn" type="PackedScene" id=3]
 [ext_resource path="res://level/waves/levels/level1/ratty_profile.tres" type="Resource" id=4]
-[ext_resource path="res://level/events/EventUnitDrag.tscn" type="PackedScene" id=5]
+[ext_resource path="res://level/events/InputManager.tscn" type="PackedScene" id=5]
 [ext_resource path="res://level/CandyContainer.tscn" type="PackedScene" id=6]
 [ext_resource path="res://effects/EventContainer.tscn" type="PackedScene" id=7]
 [ext_resource path="res://units/UnitTowerContainer.tscn" type="PackedScene" id=8]
 [ext_resource path="res://level/TowerSpot.tscn" type="PackedScene" id=9]
-[ext_resource path="res://level/events/EventCapture.tscn" type="PackedScene" id=10]
 [ext_resource path="res://level/waves/WaveSegment.tscn" type="PackedScene" id=11]
 [ext_resource path="res://level/waves/WaveSegmentContainer.tscn" type="PackedScene" id=12]
 [ext_resource path="res://ui/CaptureBtn.tscn" type="PackedScene" id=13]
-[ext_resource path="res://level/events/LevelEvents.tscn" type="PackedScene" id=14]
+[ext_resource path="res://level/events/LevelEvents.tres" type="Resource" id=14]
 [ext_resource path="res://level/events/RunEvent.tres" type="Resource" id=15]
 [ext_resource path="res://level/events/LevelSpeedManager.tscn" type="PackedScene" id=16]
 
@@ -25,15 +24,9 @@ material = SubResource( 1 )
 
 [node name="GameRoot" type="Spatial"]
 
-[node name="Events" type="Node" parent="."]
+[node name="LevelSpeedManager" parent="." instance=ExtResource( 16 )]
 
-[node name="LevelEvents" parent="Events" instance=ExtResource( 14 )]
-
-[node name="EventUnitDrag" parent="Events" instance=ExtResource( 5 )]
-
-[node name="EventCapture" parent="Events" instance=ExtResource( 10 )]
-
-[node name="LevelSpeedManager" parent="Events" instance=ExtResource( 16 )]
+[node name="InputManager" parent="." instance=ExtResource( 5 )]
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.422618, 0.906308, 0, -0.906308, 0.422618, 0, 37, 20.008 )
@@ -77,11 +70,13 @@ material/0 = null
 
 [node name="UnitTowerContainer" parent="." instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.706657, 1, 2.51422 )
+unitCaptureEvent = null
 
 [node name="WaveManager" type="Node" parent="."]
 script = ExtResource( 2 )
 path1Path = NodePath("../Path1/WalkPoint")
 RunEvent = ExtResource( 15 )
+LevelEvents = ExtResource( 14 )
 
 [node name="Wave1" parent="WaveManager" instance=ExtResource( 12 )]
 
@@ -141,7 +136,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15.6489, 0.358546, 11.3363 )
 [node name="CandyContainer6" parent="Candy" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4674, 0.358546, 11.0254 )
 
-[node name="EventContainer" parent="." groups=["effectContainer"] instance=ExtResource( 7 )]
+[node name="EffectContainer" parent="." groups=["effectContainer"] instance=ExtResource( 7 )]
 
 [node name="UITowerBtn" parent="." instance=ExtResource( 1 )]
 anchor_left = 0.052

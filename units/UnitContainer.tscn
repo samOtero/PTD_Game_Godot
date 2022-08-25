@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
+[ext_resource path="res://level/events/UnitCaptureEvent.tres" type="Resource" id=1]
 [ext_resource path="res://units/UnitContainer.gd" type="Script" id=2]
 
 [sub_resource type="BoxShape" id=1]
 
 [node name="UnitContainer" type="Spatial"]
 script = ExtResource( 2 )
+unitCaptureEvent = ExtResource( 1 )
 
 [node name="Area" type="Area" parent="."]
 input_capture_on_drag = true

@@ -1,4 +1,5 @@
-extends Control
+extends Resource
+class_name UnitCaptureEvent
 
 signal started_capturing
 signal end_capturing
@@ -25,7 +26,7 @@ func do_hover_unit(whichUnit):
 func do_exit_unit(_whichUnit):
 	selectedUnit = null
 	
-func _input(event):
+func on_input_event(event):
 	# If the event is releasing the mouse button then we want to consume it
 	if (event is InputEventMouseButton && event.pressed == false):
 		# If we aren't hovering over anything or not capturing then ignore the events

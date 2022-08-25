@@ -1,6 +1,7 @@
 extends Node
 
 export var waveProfile: Resource
+export var LevelEvents: Resource
 var profile: UnitProfile
 export var pathNum: int = 1
 export var totalUnitsToSpawn: int
@@ -12,8 +13,6 @@ var counter: int
 var isCompleted: bool
 var isStarted: bool
 
-var levelEvents
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	isCompleted = false
@@ -22,9 +21,7 @@ func _ready():
 	unitsLeftToSpawn = totalUnitsToSpawn
 	# Get the unit profile from the child WaveProfile resource
 	profile = waveProfile.getProfile()
-	# Getting a reference of our unit left event
-	levelEvents = get_node("/root").get_node_or_null("GameRoot/Events/LevelEvents")
-	if (levelEvents == null): print('WaveSegment: MISSING LevelEvents! Wont be able to spawn units in a path!')
+	if (LevelEvents == null): print('WaveSegment: MISSING LevelEvents! Wont be able to spawn units in a path!')
 	
 func _onRun():
 	if (isCompleted == true): return
@@ -46,7 +43,7 @@ func _onRun():
 		unitsLeftToSpawn -= 1
 		counter = betweenDelay
 		# Signal that we want to spawn
-		levelEvents.do_spawn_unit_in_path(profile, pathNum)
+		LevelEvents.do_spawn_unit_in_path(profile, pathNum)
 		return
 	
 	# Move the counter forward

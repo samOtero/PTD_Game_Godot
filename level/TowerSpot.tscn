@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://level/TowerSpot.gd" type="Script" id=1]
+[ext_resource path="res://level/events/UnitDragEvent.tres" type="Resource" id=2]
 
 [sub_resource type="CubeMesh" id=1]
 
@@ -14,6 +15,7 @@ transform = Transform( 1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, 2.08757, 0 )
 mesh = SubResource( 1 )
 material/0 = SubResource( 2 )
 script = ExtResource( 1 )
+unitDragEvent = ExtResource( 2 )
 
 [node name="Area" type="Area" parent="."]
 input_capture_on_drag = true

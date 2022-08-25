@@ -1,6 +1,7 @@
-extends Control
+extends Resource
+class_name UnitDragEvent
 
-signal unit_start_drag(whichUnit)
+signal unit_start_drag(whichUnit, fromUIButton)
 
 var draggedUnit
 var selectedSpot
@@ -19,7 +20,7 @@ func do_enter_spot(whichSpot):
 func do_exit_spot(_whichSpot):
 	selectedSpot = null
 	
-func _input(event):
+func on_input_event(event):
 	# If we aren't dragging anything then ignore the events
 	if (draggedUnit == null): return
 	# If the event is releasing the mouse button then we want to consume it
