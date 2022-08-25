@@ -49,6 +49,11 @@ func addUnitToSpot(newUnit):
 
 	myUnit = newUnit
 	myUnit.currentSpot = self
+
+	# Set the unit's parent to the local parent so that the positioning will work
+	# TODO: Remove this and just spawn unit based on location
+	myUnit.get_parent().remove_child(myUnit);
+	self.get_parent().add_child(myUnit);
 	# Place unit in tower spot
 	myUnit.transform.origin = self.transform.origin
 	myUnit.setIsBattling(true) # When added to a spot the unit is now battling!

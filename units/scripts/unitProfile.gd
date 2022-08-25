@@ -133,6 +133,10 @@ static func CreateEnemy(newProfile, parentNode) -> Node:
 	var containerScene = preload('res://units/UnitEnemyContainer.tscn')
 	return CreateUnit(newProfile, containerScene, parentNode)
 	
+static func CreateTower(newProfile, parentNode) -> Node:
+	var containerScene = preload('res://units/UnitTowerContainer.tscn')
+	return CreateUnit(newProfile, containerScene, parentNode);
+	
 static func CreateUnit(newProfile, containerScene, parentNode) -> Node:
 	var unitContainer = containerScene.instance()
 	# Set our Unit Name so we can attach the correct graphic
