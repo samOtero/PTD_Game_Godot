@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://level/events/InputManager.gd" type="Script" id=1]
+[ext_resource path="res://level/events/UnitDragEvent.tres" type="Resource" id=2]
+[ext_resource path="res://level/events/UnitCaptureEvent.tres" type="Resource" id=3]
+
+[node name="InputManager" type="Control"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 1 )
+UnitDragEvent = ExtResource( 2 )
+UnitCaptureEvent = ExtResource( 3 )

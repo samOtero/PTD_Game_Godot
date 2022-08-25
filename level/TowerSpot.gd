@@ -1,13 +1,12 @@
 extends MeshInstance
 
 var myUnit
-var unitDragEvent
+export var unitDragEvent: Resource
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	# Getting a reference of our unit start drag event
-	unitDragEvent =  get_node("/root").get_node_or_null("GameRoot/Events/EventUnitDrag")
+	# Check to see if we want a drag event
 	if (unitDragEvent == null): print('Tower Spot: MISSING unitDragEvent, will prevent functionality of dragging a unit from a spot!')
 
 func _on_entered():
@@ -24,7 +23,7 @@ func _on_input_event(_camera, event, _position, _normal, _shape_idx):
 			# If we have a unit to drag
 			if (myUnit != null):
 				# Trigger the drag
-				if (unitDragEvent != null): unitDragEvent.do_unit_start_drag(myUnit, false)
+				unitDragEvent.do_unit_start_drag(myUnit, false)
 				event.pressed = false # HACK: This fixes an issue with not being able to detect mouse over/exit on tower spots
 			
 		

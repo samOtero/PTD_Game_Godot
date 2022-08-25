@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://ui/units/0001_froggy_ui.tscn" type="PackedScene" id=1]
 [ext_resource path="res://ui/UITowerBtn.gd" type="Script" id=2]
+[ext_resource path="res://level/events/UnitDragEvent.tres" type="Resource" id=3]
 
 [node name="UITowerBtn" type="Button"]
 margin_right = 85.0
@@ -12,6 +13,7 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
 }
+unitDragEvent = ExtResource( 3 )
 
 [node name="3DUnitUI" parent="." instance=ExtResource( 1 )]
 margin_top = 9.0

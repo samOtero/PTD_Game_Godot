@@ -20,15 +20,12 @@ var currentSpot
 var unitMesh
 
 # Events
-var unitCaptureEvent
+export var unitCaptureEvent: Resource
 
 enum DIRECTION { NORTH, SOUTH, EAST, WEST }
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	# Getting a reference of our unit capture event
-	unitCaptureEvent =  get_node("/root").get_node_or_null("GameRoot/Events/EventCapture")
-	if (unitCaptureEvent == null): print('Unit Container: MISSING unitCaptureEvent, will prevent functionality of capturing a unit!')
 	#TODO: This will probably move to Init since we won't know unitName until then
 	# Add this units graphic to this container
 	var unitScene = load("res://units/"+unitName+"_unit.tscn")

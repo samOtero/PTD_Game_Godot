@@ -1,7 +1,7 @@
 extends Button
 
 
-var unitDragEvent
+export var unitDragEvent: Resource
 var myUnit
 
 
@@ -9,9 +9,8 @@ var myUnit
 func _ready():
 	# TODO: Get actual tower instead of hardcoding here
 	myUnit = get_tree().get_nodes_in_group("tower")[0]
-	# Getting a reference of our unit start drag event
-	unitDragEvent = owner.get_node_or_null("Events/EventUnitDrag")
-	if (unitDragEvent != null): unitDragEvent.connect("unit_start_drag", self, "_on_Unit_Start_Drag")
+	# Connect to drag event
+	if (unitDragEvent != null): var _err = unitDragEvent.connect("unit_start_drag", self, "_on_Unit_Start_Drag")
 	if (unitDragEvent == null): print('Tower Button: MISSING unitDragEvent, will prevent functionality of dragging a unit from a spot!')
 
 func _on_Unit_Start_Drag(whichUnit, fromUIButton):

@@ -20,8 +20,8 @@ var directionVector
 var velocityVector
 var candyList
 var eventsRegistered = false
-var levelEvents
 export var RunEvent: Resource
+export var LevelEvents: Resource
 
 enum DIRECTION { NORTH, SOUTH, EAST, WEST }
 
@@ -34,9 +34,7 @@ func _ready():
 	# Connect to do_run signal from event
 	var _error_code = RunEvent.connect("do_run", self, "_onRun")
 	
-	# Getting a reference of our unit left event
-	levelEvents = get_node("/root").get_node_or_null("GameRoot/Events/LevelEvents")
-	if (levelEvents == null): print('WalkPointFollower: MISSING LevelEvents, this should only happen when testing without events, will use backup functionality!')
+	if (LevelEvents == null): print('WalkPointFollower: MISSING LevelEvents, this should only happen when testing without events, will use backup functionality!')
 	
 func reset(startPoint):
 	initialPoint = startPoint
@@ -113,7 +111,7 @@ func setNewPoint(newPoint):
 			# If we have candy then we want to capture it
 			doCaptureCandy()
 			# Send unit left event when we reach our end
-			if (levelEvents != null): levelEvents.do_unit_left(unit)
+			if (LevelEvents != null): LevelEvents.do_unit_left(unit)
 			else:
 				# Including some fallback functionality, incase we want to test this without the event
 				print("WalkPointFollower: levelEvents not found, using fallback functionality!")
