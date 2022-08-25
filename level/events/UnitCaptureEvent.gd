@@ -30,9 +30,17 @@ func on_input_event(event):
 	# If the event is releasing the mouse button then we want to consume it
 	if (event is InputEventMouseButton && event.pressed == false):
 		# If we aren't hovering over anything or not capturing then ignore the events
-		if (selectedUnit != null && isCapturing == true):
+		if (isCapturing == true && haveSelectedUnit()):
 			selectedUnit.doCapture();
 		# End capturing if necessary
 		if (isCapturing == true): do_end_capturing()
+		
+func haveSelectedUnit():
+	# Check to see if our select unit exist and is not marked to be removed
+	# 
+	if (selectedUnit == null || !weakref(selectedUnit).get_ref()):
+		selectedUnit = null
+		return false
+	return true
 		
 		
